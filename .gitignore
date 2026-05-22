@@ -1,0 +1,14 @@
+# Environments
+.env
+
+# Google OAuth Credentials
+credentials.json
+token.json
+
+# Temporary files (as per AGENTS.md)
+tmp/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class

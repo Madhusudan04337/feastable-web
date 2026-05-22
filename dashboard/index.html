@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feastables Premium Dashboard</title>
+    <link rel="icon"
+        href="https://feastables.com/cdn/shop/files/Feastables_Rebrand_Lockup_Secondary__Square_32x32.png?v=1704497884">
+    <!-- Import Kanit font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            /* Ultimate Premium Feastables Theme */
+            --primary: #72E2FF;
+            --primary-glow: rgba(114, 226, 255, 0.5);
+            --secondary: #CEFC17;
+            --secondary-glow: rgba(206, 252, 23, 0.4);
+
+            --bg-base: #05070A;
+            /* Extremely deep dark */
+            --text-primary: #F8FAFC;
+            --text-muted: #94A3B8;
+
+            /* Glassmorphism Variables */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-bg-hover: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border-highlight: rgba(114, 226, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glowing Background Orbs */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--bg-base);
+        }
+
+        .glow-orb-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(114, 226, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float1 20s infinite ease-in-out alternate;
+        }
+
+        .glow-orb-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(206, 252, 23, 0.06) 0%, rgba(0, 0, 0, 0) 60%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float2 25s infinite ease-in-out alternate;
+        }
+
+        @keyframes float1 {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(10%, 10%) scale(1.1);
+            }
+        }
+
+        @keyframes float2 {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(-10%, -15%) scale(1.05);
+            }
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: rgba(5, 7, 10, 0.6);
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 24px;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 10;
+        }
+
+        .sidebar-logo {
+            width: 180px;
+            margin: 0 auto 48px auto;
+            display: block;
+            filter: drop-shadow(0 0 15px var(--primary-glow));
+            transition: transform 0.4s ease;
+        }
+
+        .sidebar-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 14px 24px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--glass-bg-hover);
+            border: 1px solid var(--glass-border);
+            transform: translateX(5px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(90deg, rgba(114, 226, 255, 0.1) 0%, rgba(114, 226, 255, 0) 100%);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+            border-left: 4px solid var(--primary);
+            box-shadow: inset 20px 0 30px -20px var(--primary-glow);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 48px 56px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 46px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(114, 226, 255, 0.2);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #00B3E3 100%);
+            color: #000;
+            border: none;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(114, 226, 255, 0.3);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-20deg);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(114, 226, 255, 0.5);
+        }
+
+        .btn:hover::after {
+            left: 150%;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(114, 226, 255, 0.2);
+        }
+
+        /* Glassy Cards (KPIs, Charts, Tables) */
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--glass-border-highlight);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(114, 226, 255, 0.1) inset;
+        }
+
+        .kpi-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 16px;
+            letter-spacing: 1.5px;
+        }
+
+        .kpi-value {
+            font-size: 40px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .kpi-trend {
+            display: inline-flex;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(206, 252, 23, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(206, 252, 23, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-trend.neutral {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Charts Area */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .chart-header {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chart-header::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Product Table */
+        .table-container {
+            padding: 0;
+            /* Override glass-panel padding for flush table */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 24px 32px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        tr {
+            transition: background 0.3s ease;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .product-cell {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 400;
+            font-size: 15px;
+            color: #FFF;
+        }
+
+        .product-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .status-badge {
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            background: rgba(206, 252, 23, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(206, 252, 23, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge.low {
+            background: rgba(255, 99, 132, 0.1);
+            color: #FF6384;
+            border-color: rgba(255, 99, 132, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient Animated Background -->
+    <div class="ambient-glow">
+        <div class="glow-orb-1"></div>
+        <div class="glow-orb-2"></div>
+    </div>
+
+    <aside class="sidebar">
+        <img src="https://feastables.com/cdn/shop/files/Feastables_Rebrand_Non_Tilted.png?v=1715198993&width=180"
+            alt="Feastables Logo" class="sidebar-logo">
+        <nav>
+            <a class="nav-link active" data-target="dashboard">Dashboard</a>
+            <a class="nav-link" data-target="products">Products</a>
+            <a class="nav-link" data-target="sales">Sales & Analytics</a>
+            <a class="nav-link" data-target="customers">Customers</a>
+            <a class="nav-link" data-target="settings">Settings</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div id="dashboard" class="view-section">
+            <div class="header">
+                <h1>Sales Overview</h1>
+                <div class="header-actions">
+                    <button id="exportBtn" class="btn btn-secondary">Export Data</button>
+                    <button class="btn">Add Promotion</button>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="glass-panel kpi-card">
+                    <div class="kpi-title">Total Revenue (MTD)</div>
+                    <div class="kpi-value">$2,459,320</div>
+                    <div class="kpi-trend">↑ 14.5% vs last month</div>
+                </div>
+                <div class="glass-panel kpi-card">
+                    <div class="kpi-title">Chocolate Bars Sold</div>
+                    <div class="kpi-value">845,210</div>
+                    <div class="kpi-trend">↑ 8.2% vs last month</div>
+                </div>
+                <div class="glass-panel kpi-card">
+                    <div class="kpi-title">Average Order Value</div>
+                    <div class="kpi-value">$34.50</div>
+                    <div class="kpi-trend neutral">→ 0.0% vs last month</div>
+                </div>
+                <div class="glass-panel kpi-card">
+                    <div class="kpi-title">Conversion Rate</div>
+                    <div class="kpi-value">4.8%</div>
+                    <div class="kpi-trend">↑ 1.2% vs last month</div>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="glass-panel">
+                    <div class="chart-header">Revenue Trend (Past 6 Months)</div>
+                    <canvas id="revenueChart" height="100"></canvas>
+                </div>
+                <div class="glass-panel">
+                    <div class="chart-header">Sales by Product</div>
+                    <canvas id="productChart" height="220"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-panel table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Top Performing Products</th>
+                            <th>Category</th>
+                            <th>Units Sold</th>
+                            <th>Revenue</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="product-cell">
+                                    <img src="https://cdn.shopify.com/s/files/1/0551/6060/2784/files/Chocolate_MarioGalaxyCocoaCrunch_60g_400x400.png?v=1776111170"
+                                        alt="Mario Galaxy Cocoa Crunch" class="product-img">
+                                    Mario Galaxy Cocoa Crunch
+                                </div>
+                            </td>
+                            <td>Chocolate Bar</td>
+                            <td>245,100</td>
+                            <td>$732,849</td>
+                            <td><span class="status-badge">In Stock</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-cell">
+                                    <img src="https://cdn.shopify.com/s/files/1/0551/6060/2784/files/abouts-slides-3-newbar.png?v=1751400309&width=600"
+                                        alt="Milk Chocolate" class="product-img">
+                                    Milk Chocolate Bar
+                                </div>
+                            </td>
+                            <td>Chocolate Bar</td>
+                            <td>198,450</td>
+                            <td>$593,365</td>
+                            <td><span class="status-badge low">Low Stock</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-cell">
+                                    <div class="product-img" style="background: #72E2FF;"></div>
+                                    Deez Nutz Peanut Butter
+                                </div>
+                            </td>
+                            <td>Chocolate Bar</td>
+                            <td>156,220</td>
+                            <td>$467,097</td>
+                            <td><span class="status-badge">In Stock</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-cell">
+                                    <div class="product-img" style="background: #CEFC17;"></div>
+                                    Karl Gummies (Sour Apple)
+                                </div>
+                            </td>
+                            <td>Gummies</td>
+                            <td>84,100</td>
+                            <td>$251,459</td>
+                            <td><span class="status-badge">In Stock</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Placeholder Views -->
+        <div id="products" class="view-section" style="display: none;">
+            <div class="header">
+                <h1>Products</h1>
+            </div>
+            <div class="glass-panel" style="margin-top: 24px;">
+                <p style="color: var(--text-muted);">Product inventory and catalog management features will be displayed
+                    here.</p>
+            </div>
+        </div>
+
+        <div id="sales" class="view-section" style="display: none;">
+            <div class="header">
+                <h1>Sales & Analytics</h1>
+            </div>
+            <div class="glass-panel" style="margin-top: 24px;">
+                <p style="color: var(--text-muted);">Deep-dive analytics, cohort analysis, and geographic sales data
+                    will be displayed here.</p>
+            </div>
+        </div>
+
+        <div id="customers" class="view-section" style="display: none;">
+            <div class="header">
+                <h1>Customers</h1>
+            </div>
+            <div class="glass-panel" style="margin-top: 24px;">
+                <p style="color: var(--text-muted);">Customer lifetime value tracking and demographic segmentation will
+                    be displayed here.</p>
+            </div>
+        </div>
+
+        <div id="settings" class="view-section" style="display: none;">
+            <div class="header">
+                <h1>Settings</h1>
+            </div>
+            <div class="glass-panel" style="margin-top: 24px;">
+                <p style="color: var(--text-muted);">Dashboard configurations, user management, and API integrations
+                    will be managed here.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab Navigation Logic
+        const navLinks = document.querySelectorAll('.nav-link');
+        const viewSections = document.querySelectorAll('.view-section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                // Remove active class from all links
+                navLinks.forEach(l => l.classList.remove('active'));
+                // Add active class to clicked link
+                this.classList.add('active');
+
+                // Hide all view sections
+                viewSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show target view section
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    document.getElementById(targetId).style.display = 'block';
+                }
+            });
+        });
+
+        // Chart Configuration
+        Chart.defaults.font.family = "'Kanit', sans-serif";
+        Chart.defaults.color = '#94A3B8'; // text-muted
+
+        // Custom plugin for chart glow effects
+        const glowPlugin = {
+            id: 'glow',
+            beforeDatasetsDraw: (chart) => {
+                const ctx = chart.ctx;
+                ctx.save();
+                ctx.shadowColor = 'rgba(114, 226, 255, 0.4)';
+                ctx.shadowBlur = 15;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 4;
+            },
+            afterDatasetsDraw: (chart) => {
+                chart.ctx.restore();
+            }
+        };
+
+        // Revenue Line Chart
+        const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+
+        // Create Gradient
+        const gradient = ctxRevenue.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(114, 226, 255, 0.4)');
+        gradient.addColorStop(1, 'rgba(114, 226, 255, 0.0)');
+
+        new Chart(ctxRevenue, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue ($)',
+                    data: [1200000, 1450000, 1300000, 1800000, 2100000, 2459320],
+                    borderColor: '#72E2FF',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#CEFC17',
+                    pointBorderColor: '#05070A',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 8,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            plugins: [glowPlugin],
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.03)',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // Product Doughnut Chart
+        const ctxProduct = document.getElementById('productChart').getContext('2d');
+        new Chart(ctxProduct, {
+            type: 'doughnut',
+            data: {
+                labels: ['Milk Choc', 'Crunch', 'Deez Nutz', 'Gummies'],
+                datasets: [{
+                    data: [35, 25, 20, 20],
+                    backgroundColor: [
+                        '#72E2FF', // Primary
+                        '#CEFC17', // Secondary
+                        '#00B3E3', // Accent
+                        '#1E293B'  // Slate 800
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '75%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 24,
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            color: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Export Data Functionality
+        document.getElementById('exportBtn').addEventListener('click', function () {
+            const exportData = [
+                ['Product', 'Category', 'Units Sold', 'Revenue', 'Status'],
+                ['Mario Galaxy Cocoa Crunch', 'Chocolate Bar', '245100', '732849', 'In Stock'],
+                ['Milk Chocolate Bar', 'Chocolate Bar', '198450', '593365', 'Low Stock'],
+                ['Deez Nutz Peanut Butter', 'Chocolate Bar', '156220', '467097', 'In Stock'],
+                ['Karl Gummies (Sour Apple)', 'Gummies', '84100', '251459', 'In Stock']
+            ];
+
+            let csvContent = "data:text/csv;charset=utf-8,"
+                + exportData.map(e => e.join(",")).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "feastables_sales_data.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+
+</html>

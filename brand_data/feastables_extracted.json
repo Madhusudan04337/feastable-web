@@ -1,0 +1,302 @@
+{
+  "markdown": null,
+  "html": null,
+  "raw_html": null,
+  "json": {
+    "hero_images": [
+      {
+        "url": "https://feastables.com/cdn/shop/files/your-bag-text.svg?v=1705023389&width=1",
+        "alt_text": "Your Bag"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0551/6060/2784/files/Chocolate_MarioGalaxyCocoaCrunch_60g_400x400.png?v=1776111170",
+        "alt_text": "View Mario Galaxy Cocoa Crunch"
+      },
+      {
+        "url": "https://feastables.com/cdn/shop/files/aboutus-hero-mobile_ff2afbf0-1884-4636-a98c-11a5dd394017.jpg?v=1752094509&width=480",
+        "alt_text": "Our Cocoa Story"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0551/6060/2784/files/abouts-slides-3-newbar.png?v=1751400309&width=600",
+        "alt_text": "New Mr.Beast Milk Chocolate Bar"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0551/6060/2784/files/aboutus-mission-topleftimage.png?crop=center&height=352&v=1750967183&width=320",
+        "alt_text": "Mission Top Left"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0551/6060/2784/files/aboutus-mission-toprightimage.png?crop=center&height=128&v=1750968148&width=135",
+        "alt_text": "Mission Top Right"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0551/6060/2784/files/aboutus-mission-bottomleftimage.png?crop=center&height=200&v=1750968496&width=320",
+        "alt_text": "Mission Bottom Left"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0551/6060/2784/files/aboutus-mission-bottomrightimage.png?crop=center&height=420&v=1750967227&width=380",
+        "alt_text": "Mission Bottom Right"
+      }
+    ],
+    "styling_effects": [
+      {
+        "effect_name": "Buttons",
+        "description": "Stylized buttons are used for actions such as 'ADD' and 'VIEW BAG & CHECKOUT', enhancing interactivity."
+      },
+      {
+        "effect_name": "Hover Effects",
+        "description": "Elements like the product images may highlight on hover, indicating interactivity."
+      },
+      {
+        "effect_name": "Responsive Design",
+        "description": "Layouts change depending on screen size, ensuring usability on both desktop and mobile."
+      }
+    ]
+  },
+  "summary": null,
+  "metadata": {
+    "title": "Our Cocoa Story",
+    "description": "Feastables is still bringing the fun, now with bolder flavor and a bigger purpose. From chocolate bars to cups and beyond, every bite helps build a better future for the people behind it.",
+    "url": "https://feastables.com/pages/our-cocoa-story",
+    "language": "en",
+    "keywords": null,
+    "robots": null,
+    "og_title": "Our Cocoa Story",
+    "og_description": null,
+    "og_url": null,
+    "og_image": "//feastables.com/cdn/shop/files/aboutus-hero-web.jpg?v=1751051983&width=1536",
+    "og_audio": null,
+    "og_determiner": null,
+    "og_locale": null,
+    "og_locale_alternate": null,
+    "og_site_name": null,
+    "og_video": null,
+    "favicon": "https://feastables.com/cdn/shop/files/Feastables_Rebrand_Lockup_Secondary__Square_32x32.png?v=1704497884",
+    "dc_terms_created": null,
+    "dc_date_created": null,
+    "dc_date": null,
+    "dc_terms_type": null,
+    "dc_type": null,
+    "dc_terms_audience": null,
+    "dc_terms_subject": null,
+    "dc_subject": null,
+    "dc_description": null,
+    "dc_terms_keywords": null,
+    "modified_time": null,
+    "published_time": null,
+    "article_tag": null,
+    "article_section": null,
+    "source_url": "https://feastables.com/pages/our-cocoa-story",
+    "status_code": 200,
+    "scrape_id": "019dde4c-49df-77da-b7ec-096e17a2edf0",
+    "num_pages": null,
+    "content_type": "text/html; charset=utf-8",
+    "proxy_used": "basic",
+    "timezone": "America/New_York",
+    "cache_state": null,
+    "cached_at": null,
+    "credits_used": 5,
+    "concurrency_limited": false,
+    "concurrency_queue_duration_ms": null,
+    "error": null,
+    "image": "//feastables.com/cdn/shop/files/aboutus-hero-web.jpg?v=1751051983&width=1536",
+    "og:image": "https://cdn.shopify.com/s/files/1/0551/6060/2784/files/meta.jpg?v=1696550380",
+    "og:image:height": "628",
+    "google-site-verification": [
+      "jk2B09brykWxw_xvAEfvudEmpR00fA55H7Pc8AONRJE",
+      "R0IpS7rGnQt-3lTlk-ZAgnt5-NjkKG6cRN1J2Nu9qUg"
+    ],
+    "viewport": [
+      "width=device-width,initial-scale=1",
+      "width=device-width, initial-scale=1.0,\n                                 maximum-scale=1.0, user-scalable=no",
+      "width=device-width, initial-scale=1.0,\n                                 maximum-scale=1.0, user-scalable=no",
+      "width=device-width, initial-scale=1.0,\n                                 maximum-scale=1.0, user-scalable=no"
+    ],
+    "shopify-checkout-api-token": "201c7b645a28569559c1681b61f45429",
+    "og:image:secure_url": "https://cdn.shopify.com/s/files/1/0551/6060/2784/files/meta.jpg?v=1696550380",
+    "color-scheme": [
+      "light dark",
+      "light dark",
+      "light dark"
+    ],
+    "og:image:width": "1280",
+    "facebook-domain-verification": "b68g80i2qzkk6qbz5pu7g2v4w7hznb",
+    "shopify-digital-wallet": "/55160602784/digital_wallets/dialog",
+    "theme-color": [
+      "#fff",
+      "#fff",
+      "#fff"
+    ],
+    "indexId": "64ac6c82-4fe1-4b37-a688-44c22701e197"
+  },
+  "links": null,
+  "images": null,
+  "screenshot": null,
+  "audio": null,
+  "actions": null,
+  "answer": null,
+  "warning": null,
+  "change_tracking": null,
+  "branding": {
+    "color_scheme": "light",
+    "logo": null,
+    "fonts": [
+      {
+        "family": "Kanit",
+        "role": "body"
+      },
+      {
+        "family": "Helvetica Neue",
+        "role": "unknown"
+      },
+      {
+        "family": "Helvetica",
+        "role": "unknown"
+      },
+      {
+        "family": "Arial",
+        "role": "unknown"
+      },
+      {
+        "family": "Sohne",
+        "role": "unknown"
+      }
+    ],
+    "colors": {
+      "primary": "#72E2FF",
+      "secondary": "#CEFC17",
+      "accent": "#72E2FF",
+      "background": "#FFFFFF",
+      "textPrimary": "#000000",
+      "link": "#F2EBE0"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Kanit",
+        "heading": "Kanit"
+      },
+      "fontStacks": {
+        "heading": [
+          "Kanit",
+          "sans-serif"
+        ],
+        "body": [
+          "Kanit",
+          "sans-serif"
+        ],
+        "paragraph": [
+          "Kanit",
+          "sans-serif"
+        ]
+      },
+      "fontSizes": {
+        "h1": "16px",
+        "h2": "36px",
+        "body": "24px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "6px"
+    },
+    "components": {
+      "input": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "borderColor": null,
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "none"
+      },
+      "buttonPrimary": {
+        "background": "#72E2FF",
+        "textColor": "#000000",
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "none"
+      },
+      "buttonSecondary": {
+        "background": "#00B3E3",
+        "textColor": "#000000",
+        "borderColor": "#000000",
+        "borderRadius": "6px",
+        "borderRadiusCorners": {
+          "topLeft": "6px",
+          "topRight": "6px",
+          "bottomRight": "6px",
+          "bottomLeft": "6px"
+        },
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(0, 0, 0) 0px 0px 0px 0px"
+      }
+    },
+    "icons": null,
+    "images": {
+      "logo": "https://feastables.com/cdn/shop/files/Feastables_Rebrand_Non_Tilted.png?v=1715198993&width=180",
+      "favicon": "https://feastables.com/cdn/shop/files/Feastables_Rebrand_Lockup_Secondary__Square_32x32.png?v=1704497884",
+      "ogImage": "//feastables.com/cdn/shop/files/aboutus-hero-web.jpg?v=1751051983&width=1536",
+      "logoHref": "/",
+      "logoAlt": "Feastables Wordmark"
+    },
+    "animations": null,
+    "layout": null,
+    "tone": null,
+    "personality": {
+      "tone": "playful",
+      "energy": "high",
+      "targetAudience": "young adults and families interested in ethical and fun products"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand name 'Feastables'.",
+      "confidence": 0.95,
+      "source": "llm"
+    },
+    "__llm_button_reasoning": {
+      "primary": {
+        "index": 6,
+        "text": "SHOP",
+        "reasoning": "Button #2 with text 'SHOP' is the primary CTA due to its vibrant blue color (#72E2FF) and action-oriented text, which aligns with typical e-commerce goals."
+      },
+      "secondary": {
+        "index": 2,
+        "text": "LEARN MORE ABOUT OUR MISSION",
+        "reasoning": "Button #1 with text 'LEARN MORE ABOUT OUR MISSION' is secondary due to its different blue shade (#00B3E3) and informative nature, complementing the primary CTA."
+      },
+      "confidence": 0.95
+    },
+    "designSystem": {
+      "framework": "tailwind",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.95,
+      "colors": 0.9,
+      "overall": 0.925
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand name 'Feastables'.",
+          "confidence": 0.95
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": true,
+        "llmSucceeded": true
+      }
+    }
+  }
+}
